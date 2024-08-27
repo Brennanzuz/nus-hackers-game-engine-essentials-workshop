@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckdk2vvwsc64r"]
+
+[ext_resource type="Texture2D" uid="uid://dfkhmwu3bj8k4" path="res://assets/art/kenney_pixel-shmup/Tilemap/tiles_packed.png" id="1_tnrek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijg86"]
+atlas = ExtResource("1_tnrek")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h0gq"]
+atlas = ExtResource("1_tnrek")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hustm"]
+atlas = ExtResource("1_tnrek")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur2ne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijg86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h0gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hustm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyDeathEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ur2ne")
+autoplay = "default"
