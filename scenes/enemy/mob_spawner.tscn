@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmh8plhe36sss"]
+
+[ext_resource type="Script" path="res://scenes/enemy/mob_spawner.gd" id="1_c0w1e"]
+
+[sub_resource type="Curve2D" id="Curve2D_kheeo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="MobSpawner" type="Path2D"]
+curve = SubResource("Curve2D_kheeo")
+script = ExtResource("1_c0w1e")
+
+[node name="SpawnPoint" type="PathFollow2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

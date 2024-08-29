@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkru16gkdm2i1"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_6igcn"]
+[ext_resource type="Texture2D" uid="uid://bkph82nfwarci" path="res://assets/art/kenney_pixel-shmup/Ships/ship_0000.png" id="2_ydv5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxaxj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tclrj"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_6igcn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_ydv5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hxaxj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_tclrj")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

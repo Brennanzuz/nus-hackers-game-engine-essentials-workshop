@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://byr8x145hogom"]
+
+[ext_resource type="Texture2D" uid="uid://wd3jfihvptmq" path="res://assets/art/kenney_pixel-shmup/Ships/ship_0001.png" id="1_vu4h0"]
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_x3xjt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gxx7t"]
+radius = 16.0
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_x3xjt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gxx7t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_vu4h0")
+
+[node name="ShootCooldown" type="Timer" parent="."]
+autostart = true
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
